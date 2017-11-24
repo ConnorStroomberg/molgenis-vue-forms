@@ -1,6 +1,5 @@
 <template>
     <validate :state="state" :custom="{'custom-validators': field.validators}" :class="{'required-field': required }">
-
         <label :for="field.id">{{ field.label }}</label>
 
         <div class="form-group">
@@ -14,7 +13,9 @@
                    :readonly="field.readOnly"
                    :aria-describedby="field.id + '-description'">
 
-            <small v-if="field.description" :id="field.id + '-description'" class="form-text text-muted">{{ field.description }}</small>
+            <small v-if="field.description" :id="field.id + '-description'" class="form-text text-muted">
+                {{ field.description }}
+            </small>
 
             <field-messages :name="field.id" show="$touched || $submitted" class="form-control-feedback">
                 <div class="invalid-message" slot="required">{{ field.label }} is required</div>
@@ -24,7 +25,6 @@
                 <div class="invalid-message" slot="custom-validators">Your custom validator says no</div>
             </field-messages>
         </div>
-
     </validate>
 </template>
 
@@ -41,8 +41,7 @@
     },
     methods: {
       customValidators () {
-//        console.log(this.field.validators)
-        return true
+        validators.run(this.field.validators)
       }
     },
     watch: {

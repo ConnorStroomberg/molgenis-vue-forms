@@ -8,12 +8,12 @@ Object.assign(config, {
     vue: 'vue'
   },
   entry: {
-    'molgenis-vue-forms': './src/components/MolgenisForm.vue'
+    'molgenis-vue-form': './src/components/MolgenisVueForm.vue'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
-    library: 'molgenis-vue-forms',
+    library: 'molgenis-vue-form',
     libraryTarget: 'umd'
   },
   devtool: '#source-map',

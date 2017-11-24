@@ -336,7 +336,8 @@ const data = {
   text: 'text value',
   hyperlink: 'www.nu.nl',
   categorical_mref: ['1', '2'],
-  date: '2018/01/01'
+  date: '2018/01/01',
+  xref: {id: '1', value: '1', label: 'Option 1'}
 }
 
 export default {

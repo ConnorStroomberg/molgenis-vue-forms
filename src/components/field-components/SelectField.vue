@@ -12,7 +12,9 @@
                          :required="required"
                          :disabled="field.disabled"
                          :readonly="field.readOnly"
-                         @search-change="query"
+                         :closeOnSelect="false"
+                         :clearOnSelect="true"
+                         @search-change="asynchFind"
                          deselect-label=""
                          select-label=""
                          track-by="id"
@@ -45,7 +47,7 @@
     data () {
       return {
         localValue: this.value,
-        options: this.field.options.options
+        options: this.field.options.uri ? [] : this.field.options.options
       }
     },
     watch: {
@@ -54,7 +56,7 @@
       }
     },
     methods: {
-      query (query) {
+      asynchFind (query) {
         if (this.field.options.uri) {
           // Call API for data
           // get(this.field.options.uri + '?q=*=q=' + query).then(response => {

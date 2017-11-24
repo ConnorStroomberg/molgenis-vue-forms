@@ -1,4 +1,4 @@
-# MOLGENIS Vue forms
+# MOLGENIS Vue form
 
 > Vue library for generating web forms
 

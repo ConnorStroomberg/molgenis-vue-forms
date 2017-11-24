@@ -46,9 +46,6 @@ const getHtmlFieldType = (fieldType) => {
  * Return an options array consisting of objects containing id, value, and label
  * For asynchronous option retrieval return an object containing URI, id, and label of the referencing table
  *
- * // TODO redesign this part
- *
- * @private
  * @param attribute
  */
 const getOptions = (attribute) => {
@@ -56,13 +53,14 @@ const getOptions = (attribute) => {
     case 'XREF':
     case 'ONETOMANY':
       return {
-        options: [],
-        uri: attribute.refEntity.hrefCollection,
+        // uri: attribute.refEntity.hrefCollection,
+        options: [
+          {id:'1', value: '1', label: 'Option 1'}
+        ],
         multiple: false
       }
     case 'MREF':
       return {
-        options: [],
         uri: attribute.refEntity.hrefCollection,
         multiple: true
       }
@@ -128,7 +126,6 @@ const isValid = (attribute) => {
 /**
  * Generate a schema field object suitable for the forms
  *
- * @private
  * @param attribute Attribute metadata from an EntityType V2 response
  * @returns {{type: String, id, label, description, required: boolean, disabled, visible, options: ({uri, id, label, multiple}|{uri, id, label})}}
  */
