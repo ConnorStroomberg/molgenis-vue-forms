@@ -265,7 +265,8 @@ const schema = {
       'refEntity': {
         'href': '/api/v1/it_emx_datatypes_TypeTestRef/meta',
         'hrefCollection': '/api/v1/it_emx_datatypes_TypeTestRef',
-        'idAttribute': 'value',
+        'idAttribute': 'id',
+        'labelAttribute': 'label',
         'languageCode': 'en',
         'writable': true
       },
@@ -290,7 +291,8 @@ const schema = {
       'refEntity': {
         'href': '/api/v1/it_emx_datatypes_TypeTestRef/meta',
         'hrefCollection': '/api/v1/it_emx_datatypes_TypeTestRef',
-        'idAttribute': 'value',
+        'idAttribute': 'id',
+        'labelAttribute': 'label',
         'languageCode': 'en',
         'writable': true
       },

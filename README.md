@@ -4,11 +4,10 @@
 
 ## TODO
 
-- Handle compounds
-- Option schema for providing options or to specify an asynch target to fetch data on search
 - Unit tests
+- Handle compounds
 - Validation expressions
-- Validators pointing to data from other fields
+- Fix Multi select selected label for when multiselect == false
 
 ## Examples and specifications
 

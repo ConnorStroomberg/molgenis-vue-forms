@@ -53,16 +53,19 @@ const getOptions = (attribute) => {
     case 'XREF':
     case 'ONETOMANY':
       return {
-        // uri: attribute.refEntity.hrefCollection,
-        options: [
-          {id:'1', value: '1', label: 'Option 1'}
-        ],
-        multiple: false
+        uri: attribute.refEntity.hrefCollection,
+        multiple: false,
+        id: attribute.refEntity.idAttribute,
+        label: attribute.refEntity.labelAttribute,
+        options: []
       }
     case 'MREF':
       return {
         uri: attribute.refEntity.hrefCollection,
-        multiple: true
+        multiple: true,
+        id: attribute.refEntity.idAttribute,
+        label: attribute.refEntity.labelAttribute,
+        options: []
       }
     case 'CATEGORICAL':
     case 'CATEGORICAL_MREF':
@@ -130,7 +133,13 @@ const isValid = (attribute) => {
  * @returns {{type: String, id, label, description, required: boolean, disabled, visible, options: ({uri, id, label, multiple}|{uri, id, label})}}
  */
 const generateFormSchemaField = (attribute) => {
-  const validators = [isValid]
+  // const validators = [isValid]
+  const validators = [
+    (data) => {
+      const valid = data['string'] === 'valid'
+      return valid ? { valid: valid, message: null} : { valid: false, message: 'Learn to type a valid value!'}
+    }
+  ]
 
   return {
     type: getHtmlFieldType(attribute.fieldType),

@@ -1,5 +1,6 @@
 <template>
-    <validate :state="state" :custom="{'custom-validators': field.validators}" :class="{'required-field': required }">
+    <validate :state="state" :custom="{'custom-validators': customValidators(field)}"
+              :class="{'required-field': required }">
         <label :for="field.id">{{ field.label }}</label>
 
         <div class="form-group">
@@ -22,26 +23,30 @@
                 <div class="invalid-message" slot="number">The submitted value is not a valid number</div>
                 <div class="invalid-message" slot="url">Not a valid URL</div>
                 <div class="invalid-message" slot="email">Not a valid email value</div>
-                <div class="invalid-message" slot="custom-validators">Your custom validator says no</div>
+                <div class="invalid-message" slot="custom-validators">{{ customMessage }}</div>
             </field-messages>
         </div>
     </validate>
 </template>
 
 <script>
-  import validators from '../../validators'
-
   export default {
     name: 'typed-form-field',
-    props: ['value', 'field', 'required', 'state'],
+    props: ['value', 'field', 'required', 'state', 'validate'],
     data () {
       return {
-        localValue: this.value
+        localValue: this.value,
+        customMessage: null
       }
     },
     methods: {
-      customValidators () {
-        validators.run(this.field.validators)
+      customValidators (field) {
+        if (field.validators && field.validators.length > 0) {
+          const result = this.validate(field)
+          this.customMessage = result.message
+          return result.valid
+        }
+        return true
       }
     },
     watch: {
