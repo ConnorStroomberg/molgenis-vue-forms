@@ -4,9 +4,12 @@
 
 ## TODO
 
-- Handle compounds
-- Option schema for providing options or to specify an asynch target to fetch data on search
 - Unit tests
+- Compound fields
+- Option schema for providing options or to specify an asynch target to fetch data on search
+- Add Captcha Field component
+
+## Currently broken
 - Validation expressions
 - Validators pointing to data from other fields
 
