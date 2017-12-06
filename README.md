@@ -6,6 +6,11 @@
 
 - Unit tests
 - Handle compounds
+- Compound fields
+- Option schema for providing options or to specify an asynch target to fetch data on search
+- Add Captcha Field component
+
+## Currently broken
 - Validation expressions
 - Fix Multi select selected label for when multiselect == false
 
