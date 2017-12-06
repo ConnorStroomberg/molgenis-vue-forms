@@ -86,7 +86,7 @@
   import validators from '../validators'
 
   export default {
-    name: 'vue-data-form',
+    name: 'molgenis-form',
     props: ['id', 'fields', 'data', 'options'],
     data () {
       return {

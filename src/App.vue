@@ -32,7 +32,7 @@
 </template>
 
 <script>
-  import MolgenisVueForm from './components/MolgenisVueForm.vue'
+  import MolgenisForm from './components/MolgenisForm.vue'
   import utils from './utils'
   import restResponse from './data'
 
@@ -55,7 +55,7 @@
       }
     },
     components: {
-      MolgenisVueForm
+      MolgenisForm
     }
   }
 </script>
