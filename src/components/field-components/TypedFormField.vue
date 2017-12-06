@@ -6,7 +6,7 @@
         <div class="form-group">
             <input :type="field.type"
                    v-model.lazy="localValue"
-                   :class="['form-control', { 'is-invalid' : state && (state.$touched || state.$submitted) && state.$invalid}]"
+                   :class="['form-control form-control-lg', { 'is-invalid' : state && (state.$touched || state.$submitted) && state.$invalid}]"
                    :id="field.id"
                    :name="field.id"
                    :required="required"
