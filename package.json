@@ -1,6 +1,6 @@
 {
-  "name": "@molgenis/molgenis-vue-form",
-  "description": "Library for generating web forms",
+  "name": "@molgenis/molgenis-forms",
+  "description": "Library for generating web forms with Bootstrap 4 styling",
   "version": "0.0.7",
   "author": "Mark de Haan <markdehaan90@gmail.com>",
   "private": false,
@@ -12,10 +12,13 @@
     "test": "karma start test/unit/karma.conf.js --single-run --require test/setup.js test/**/*.spec.js",
     "test:watch": "karma start test/unit/karma.conf.js --watch --require test/setup.js test/**/*.spec.js"
   },
-  "main": "dist/molgenis-vue-form.js",
+  "main": "dist/molgenis-forms.js",
   "dependencies": {
     "vue-flatpickr-component": "^5.0.0",
-    "vue-multiselect": "^2.0.6"
+    "vue-multiselect": "^2.0.8"
+  },
+  "peerDependencies": {
+    "vue": "^2.5.9"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -38,13 +41,13 @@
     "mocha": "^4.0.1",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "vue": "^2.5.8",
+    "vue": "^2.5.9",
     "vue-form": "^4.5.2",
     "vue-loader": "^13.5.0",
     "vue-style-loader": "^3.0.3",
-    "vue-template-compiler": "^2.5.8",
+    "vue-template-compiler": "^2.5.9",
     "vue-test-utils": "^1.0.0-beta.6",
-    "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.4"
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.5"
   }
 }
