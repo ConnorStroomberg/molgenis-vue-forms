@@ -1,22 +1,16 @@
 /**
- * Run all validators from a field against the value present in that field
+ * Run all validators from a field against all the data in the form
  *
  * @param validators
  * @param value
  * @returns {boolean}
  */
-const run = (validators, value) => {
-  if (validators.length > 0) {
+const run = (validators, data) => {
     let valid = true
-
     validators.forEach(validator => {
-      valid = validator(value)
+      valid = validator(data)
     })
-
     return valid
-  } else {
-    return true
-  }
 }
 
 export default {

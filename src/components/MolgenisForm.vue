@@ -13,44 +13,51 @@
                             v-model="data[field.id]"
                             :field="field"
                             :required="isRequired(field)"
-                            :state="state[field.id]"></checkbox-field>
+                            :state="state[field.id]"
+                            :validate="validate"></checkbox-field>
 
             <date-time-field v-else-if="field.type === 'date' || field.type === 'date-time'"
                              v-model="data[field.id]"
                              :field="field"
                              :required="isRequired(field)"
-                             :state="state[field.id]"></date-time-field>
+                             :state="state[field.id]"
+                             :validate="validate"></date-time-field>
 
             <file-field v-else-if="field.type === 'file'"
                         v-model="data[field.id]"
                         :field="field"
                         :required="isRequired(field)"
-                        :state="state[field.id]"></file-field>
+                        :state="state[field.id]"
+                        :validate="validate"></file-field>
 
             <radios-field v-else-if="field.type === 'radios'"
                           v-model="data[field.id]"
                           :field="field"
                           :required="isRequired(field)"
-                          :state="state[field.id]"></radios-field>
+                          :state="state[field.id]"
+                          :validate="validate"></radios-field>
 
             <select-field v-else-if="field.type === 'select'"
                           v-model="data[field.id]"
                           :field="field"
                           :required="isRequired(field)"
-                          :state="state[field.id]"></select-field>
+                          :state="state[field.id]"
+                          :validate="validate"></select-field>
 
 
             <text-area-field v-else-if="field.type === 'text-area'"
                              v-model="data[field.id]"
                              :field="field"
                              :required="isRequired(field)"
-                             :state="state[field.id]"></text-area-field>
+                             :state="state[field.id]"
+                             :validate="validate"></text-area-field>
 
             <typed-form-field v-else
-                         v-model="data[field.id]"
-                         :field="field"
-                         :required="isRequired(field)"
-                         :state="state[field.id]"></typed-form-field>
+                              v-model="data[field.id]"
+                              :field="field"
+                              :required="isRequired(field)"
+                              :state="state[field.id]"
+                              :validate="validate"></typed-form-field>
         </fieldset>
 
         <div class="form-buttons text-right">
@@ -76,9 +83,10 @@
 
 <script>
   import fields from './field-components'
+  import validators from '../validators'
 
   export default {
-    name: 'vue-data-form',
+    name: 'molgenis-form',
     props: ['id', 'fields', 'data', 'options'],
     data () {
       return {
@@ -100,6 +108,9 @@
           visible = visible(this.data)
         }
         return (!this.hideOptionalFields || this.isRequired(field)) && visible
+      },
+      validate (field) {
+        return validators.run(field.validators, this.data)
       }
     },
     components: {

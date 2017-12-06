@@ -7,7 +7,7 @@
             <label class="custom-file">
                 <input type="file"
                        @change="updateValue"
-                       :class="['form-control', 'custom-file-input', { 'is-invalid' : state && (state.$touched || state.$submitted) && state.$invalid}]"
+                       :class="['form-control form-control-lg', 'custom-file-input', { 'is-invalid' : state && (state.$touched || state.$submitted) && state.$invalid}]"
                        :id="field.id"
                        :name="field.id"
                        :required="required"

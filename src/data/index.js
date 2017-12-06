@@ -265,7 +265,8 @@ const schema = {
       'refEntity': {
         'href': '/api/v1/it_emx_datatypes_TypeTestRef/meta',
         'hrefCollection': '/api/v1/it_emx_datatypes_TypeTestRef',
-        'idAttribute': 'value',
+        'idAttribute': 'id',
+        'labelAttribute': 'label',
         'languageCode': 'en',
         'writable': true
       },
@@ -290,7 +291,8 @@ const schema = {
       'refEntity': {
         'href': '/api/v1/it_emx_datatypes_TypeTestRef/meta',
         'hrefCollection': '/api/v1/it_emx_datatypes_TypeTestRef',
-        'idAttribute': 'value',
+        'idAttribute': 'id',
+        'labelAttribute': 'label',
         'languageCode': 'en',
         'writable': true
       },
@@ -336,7 +338,8 @@ const data = {
   text: 'text value',
   hyperlink: 'www.nu.nl',
   categorical_mref: ['1', '2'],
-  date: '2018/01/01'
+  date: '2018/01/01',
+  xref: {id: '1', value: '1', label: 'Option 1'}
 }
 
 export default {

@@ -5,7 +5,7 @@
 
         <div class="form-group">
             <flat-pickr v-model="localValue"
-                        :class="['form-control', { 'is-invalid' : state && (state.$touched || state.$submitted) && state.$invalid}]"
+                        :class="['form-control form-control-lg', { 'is-invalid' : state && (state.$touched || state.$submitted) && state.$invalid}]"
                         :config="config"
                         :id="field.id"
                         :name="field.id"

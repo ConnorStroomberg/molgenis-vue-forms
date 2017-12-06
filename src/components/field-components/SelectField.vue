@@ -7,16 +7,19 @@
                          :id="field.id"
                          :name="field.id"
                          :options="options"
+                         :internalSearch="!field.options.uri"
                          :searchable="true"
                          :multiple="field.options.multiple"
                          :required="required"
                          :disabled="field.disabled"
                          :readonly="field.readOnly"
-                         @search-change="query"
+                         :closeOnSelect="false"
+                         :clearOnSelect="true"
+                         @search-change="searchOnChange"
                          deselect-label=""
                          select-label=""
-                         track-by="id"
-                         label="label">
+                         :track-by="field.options.id"
+                         :label="field.options.label">
             </multiselect>
 
             <small v-if="field.description" :id="field.id + '-description'" class="form-text text-muted">
@@ -33,8 +36,6 @@
     </validate>
 </template>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-
 <script>
   import Multiselect from 'vue-multiselect'
   // import api from '@molgenis/molgenis-api-client'
@@ -45,7 +46,7 @@
     data () {
       return {
         localValue: this.value,
-        options: this.field.options.options
+        options: this.field.options.options.length > 0 ? this.field.options.options : []
       }
     },
     watch: {
@@ -54,7 +55,7 @@
       }
     },
     methods: {
-      query (query) {
+      searchOnChange (query) {
         if (this.field.options.uri) {
           // Call API for data
           // get(this.field.options.uri + '?q=*=q=' + query).then(response => {
@@ -74,3 +75,5 @@
     }
   }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

@@ -1,19 +1,20 @@
-# MOLGENIS Vue forms
+# MOLGENIS Vue form
 
 > Vue library for generating web forms
 
 ## TODO
 
 - Unit tests
+- Handle compounds
 - Compound fields
 - Option schema for providing options or to specify an asynch target to fetch data on search
 - Add Captcha Field component
 
 ## Currently broken
 - Validation expressions
-- Validators pointing to data from other fields
+- Fix Multi select selected label for when multiselect == false
 
-## Usage
+## Examples and specifications
 
 ```vue
 <template>
@@ -52,18 +53,16 @@
 </script>
 ```
 
-## Specifications
-
-The molgenis-vue-form component accepts the following properties
+### specifications
 
 | parameter | description | required | default | 
 |-----------|-------------|----------|---------|
 | id        | An ID used for the <form> HTML element | Yes | N/A 
-| fields    | An Array of field objects. See the [specifications](#field-specifications) and the [example](#example-field-object). | Yes | N/A
-| data      | A key value map for preselected data in form fields. See the [example](#example-data-object). | No | {}
-| options   | An option object. See the [specifications](#option-specifications) and the [example](#example-options-object). | Yes | N/A
+| fields    | An Array of field objects. See [component field](#component-field). | Yes | N/A
+| data      | A key value map for preselected data in form fields. See [component data](#component-data). | No | {}
+| options   | An option object. See [component options](#component-options). | Yes | N/A
 
-### Option specifications
+#### component options
 
 | parameter | description | required | default |
 |-----------|-------------|----------|---------|
@@ -71,48 +70,7 @@ The molgenis-vue-form component accepts the following properties
 | onSubmit  | Function for what to do on submit | Yes | N/A |
 | onCancel  | Function for what to do on cancel | Yes | N/A |
 
-### Field specifications
-
-| parameter | description |
-|-----------|-------------|
-| type      | HTML input type. Used to render the correct input. See [supported types](#supported-types) 
-| label     | Label used as a label for the input field. |
-| description | Description placed below the input field. Hidden if description is empty. |
-| required  | A boolean or a function determining whether a field is required. |
-| disabled  | A boolean or a function determining whether a field is disabled. |
-| readonly  | A boolean or a function determining whether a field is readonly (similar to disabled). |
-| visible   | A boolean or a function determining whether a field is visible. |
-| validators | A list of functions which determine whether a field is valid on submit. |
-| options | An object containing options for select, radios, and checkboxes typed fields. See [examples](#multiple-option-fields-example)|
-
-Functions in any of the parameters mentioned above should accept a data object containing the data from the form. 
-
-Functions should **always** return true or false. 
-
-See the [field object examples](#example-field-object) for code examples.
-
-#### Supported types
-
-The following types are supported
-
-| type | renders |
-|------|-------------|
-| radios | A list of radio buttons |
-| select | A Vue Multiselect dropdown which supports asynchronous and synchronous option lists
-| number | A HTML5 number input |
-| text-area | A textarea HTML element |
-| date | A Vue Flatpickr Date component |
-| date-time | A Vue Flatpickr Date component with 'enableTime = true' |
-| checkboxes | A list of checkboxes |
-| text | A HTML5 text input |
-| url | A HTML5 text url |
-| email | A HTML5 text email |
-| password | A HTML5 password input |
-| file | A HTML5 file input |
-
-## Examples
-
-### Example field object
+#### component field
 
 ```js
 /**
@@ -154,37 +112,56 @@ const fields = [
 ]
 ```
 
-### Example data object
+| parameter | description |
+|-----------|-------------|
+| type      | HTML input type. Used to render the correct input. See [field types](#field-types) 
+| label     | Label used as a label for the input field. |
+| description | Description placed below the input field. Hidden if description is empty. |
+| required  | A boolean or a function determining whether a field is required. |
+| disabled  | A boolean or a function determining whether a field is disabled. |
+| readonly  | A boolean or a function determining whether a field is readonly (similar to disabled). |
+| visible   | A boolean or a function determining whether a field is visible. |
+| validators | A list of functions which determine whether a field is valid on submit. See [field validators](#field-validators)|
+| options | An object containing options for select, radios, and checkboxes typed fields. See [field options](#field-options)|
+
+Functions in any of the parameters mentioned above should accept a data object containing the data from the form. 
+
+Functions should **always** return true or false. 
+
+##### field types
+
+| type | renders |
+|------|-------------|
+| radios | A list of radio buttons |
+| select | A Vue Multiselect dropdown which supports asynchronous and synchronous option lists
+| number | A HTML5 number input |
+| text-area | A textarea HTML element |
+| date | A Vue Flatpickr Date component |
+| date-time | A Vue Flatpickr Date component with 'enableTime = true' |
+| checkboxes | A list of checkboxes |
+| text | A HTML5 text input |
+| url | A HTML5 text url |
+| email | A HTML5 text email |
+| password | A HTML5 password input |
+| file | A HTML5 file input |
+
+##### field validators
 
 ```js
 /**
-* The following data object contains data for user form which contains an input field for:
-* - username
-* - country
-* - organisation
-* - bio
+* TODO Code examples
 */
-const data = {
-  username: 'User',
-  country: 'Netherlands',
-  organisation: 'Github repositories',
-  bio: 'A software developer who loves Vue'
-}
 ```
 
-### Example options object
+##### field options
 
 ```js
-const options = {
-  readonly: true,
-  onSubmit: (formdata) => console.log("Nice data: " + formdata),
-  onCancel: () => console.log("Why did you close my form :'(")
-}
-```
-
-### Multiple option fields example
-
-```js
+/**
+* Example of fields that require a set of options.
+* select-field: will render a dropdown where the data will be asynchronously searched on input, and where you can only select one.
+* radios-field: will render a list of radio buttons
+* checkboxes-field: will redner a list of checkboxes
+*/
 const fields = [
   {
     type: 'select',
@@ -226,6 +203,24 @@ const fields = [
     }
   }
 ]
+```
+
+#### component data
+
+```js
+/**
+* The following data object contains data for user form which contains an input field for:
+* - username
+* - country
+* - organisation
+* - bio
+*/
+const data = {
+  username: 'User',
+  country: 'Netherlands',
+  organisation: 'Github repositories',
+  bio: 'A software developer who loves Vue'
+}
 ```
 
 ## Build setup

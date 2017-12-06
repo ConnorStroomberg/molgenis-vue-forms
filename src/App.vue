@@ -6,7 +6,7 @@
                 <hr>
 
                 <blockquote class="blockquote text-center">
-                    <h1 class="display-3">MOLGENIS Vue Forms</h1>
+                    <h1 class="display-3">MOLGENIS Vue Form</h1>
                     <footer class="blockquote-footer">Powered by<cite title="Source Title">Vue.js</cite></footer>
                 </blockquote>
 
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-  import MolgenisVueForm from './components/MolgenisVueForm.vue'
+  import MolgenisForm from './components/MolgenisForm.vue'
   import utils from './utils'
   import restResponse from './data'
 
@@ -55,7 +55,7 @@
       }
     },
     components: {
-      MolgenisVueForm
+      MolgenisForm
     }
   }
 </script>
